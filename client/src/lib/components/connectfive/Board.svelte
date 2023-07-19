@@ -7,6 +7,26 @@
     export const peices = writable(
         Array(height).fill(null).map( _=> Array(width).fill(0))
     )
+    export const curPlayer = writable(1);
+    function switchPlayer() {
+        curPlayer.update(v=>{
+            return v % 2 + 1;
+        })
+    }
+
+    /**
+     * @param {number} i
+     * @param {number} j
+     * @param {number} curplayer
+     */
+    function updatePiece(i, j, curplayer) {
+        peices.update(v => {
+            v[i][j] = curplayer;
+            return v;
+        })
+
+        switchPlayer();
+    }
 </script>
 
 <script>
@@ -23,7 +43,7 @@
     >
     {#each $peices as row, i (i)}
         {#each row as piece, j (j)}
-            <Piece n={i!=0} s={i!=height-1} w={j!=0} e={j!=width-1} i={i} j={j}/>
+            <Piece n={i!=0} s={i!=height-1} w={j!=0} e={j!=width-1} qi={piece} on:click={()=>updatePiece(i, j, $curPlayer)}/>
         {/each}
     {/each}
 </section>
@@ -31,7 +51,7 @@
 <style>
     .Board {
         display: grid;
-        
+        background-color: burlywood;
     }
 </style>
 

@@ -7,26 +7,10 @@
         w = true, 
         e = true;
 
-    /**
-     * @type {number}
-     */
-     export let i;
-    /**
-     * @type {number}
-     */
-     export let j;
-
-
-    function handleClick() {
-        console.log(i, j)
-        peices.update(v => {
-            v[i][j] = 1;
-            return v
-        })
-    }
+    export let qi = 0;
 </script>
 
-<button class='Piece' style={`height: ${demension};`} on:click={handleClick}>
+<button class='Piece' style={`height: ${demension};`} on:click>
     <div class='CrossH'>
         <div style={`${w && 'background: black'}`} />
         <div style={`${e && 'background: black'}`} />
@@ -36,9 +20,8 @@
         <div style={`${s && 'background: black'}`} />
     </div>
 
-    {#if $peices[i][j] == 1}
-        <div class='Qi'>
-        </div>
+    {#if qi !== 0}
+        <div class='Qi' style={`${qi === 1 ? 'background: black' : 'background: white'}`} />
     {/if}
 </button>
 
