@@ -8,6 +8,8 @@
         e = true;
 
     export let qi = 0;
+
+    export let isDotted = false;
 </script>
 
 <button class='Piece' style={`height: ${demension};`} on:click>
@@ -19,6 +21,10 @@
         <div style={`${n && 'background: black'}`} />
         <div style={`${s && 'background: black'}`} />
     </div>
+
+    {#if isDotted}
+        <div class='Dot' />
+    {/if}
 
     {#if qi !== 0}
         <div class='Qi' style={`${qi === 1 ? 'background: black' : 'background: white'}`} />
@@ -67,5 +73,13 @@
         border-radius: 50%;
         height: 90%;
         width: 90%;
+    }
+
+    .Dot {
+        background-color: black;
+        border-radius: 50%;
+        position: absolute;
+        width: 10px;
+        height: 10px;
     }
 </style>

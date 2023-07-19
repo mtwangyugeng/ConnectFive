@@ -4,6 +4,29 @@
     const width = 19;
     const height = 19;
 
+    /**
+     * @param {number} i
+     * @param {number} j
+     * @param {number} width
+     * @param {number} height
+     */
+    function checkDotted(i, j, width, height) {
+        if(
+            i === Math.floor(height / 2) && j === Math.floor(width / 2) || 
+            i === 3 && j === Math.floor(width / 2) ||
+            i === height-4 && j === Math.floor(width / 2)||
+            i === Math.floor(height / 2) && j === 3 ||
+            i === Math.floor(height / 2) && j === width-4 ||
+            i === 3 && j === 3 ||
+            i === 3 && j === width - 4 ||
+            i === height-4 && j === width - 4 ||
+            i === height-4 && j === 3
+        )
+            return true
+        
+        return false
+    }
+
     export const peices = writable(
         Array(height).fill(null).map( _=> Array(width).fill(0))
     )
@@ -115,7 +138,7 @@
     >
     {#each $peices as row, i (i)}
         {#each row as piece, j (j)}
-            <Piece n={i!=0} s={i!=height-1} w={j!=0} e={j!=width-1} qi={piece} on:click={()=>updatePiece(i, j, $curPlayer)}/>
+            <Piece n={i!=0} s={i!=height-1} w={j!=0} e={j!=width-1} qi={piece} on:click={()=>updatePiece(i, j, $curPlayer)} isDotted={checkDotted(i, j, width, height)}/>
         {/each}
     {/each}
 </section>
