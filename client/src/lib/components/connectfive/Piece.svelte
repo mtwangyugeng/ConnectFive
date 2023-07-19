@@ -1,5 +1,5 @@
 <script>
-    import { peices } from "./Board.svelte";
+    import { curPlayer, peices } from "./Board.svelte";
 
     export let demension = "30px";
     export let n = true, 
@@ -10,9 +10,11 @@
     export let qi = 0;
 
     export let isDotted = false;
+
+    let isHovered = false;
 </script>
 
-<button class='Piece' style={`height: ${demension};`} on:click>
+<button class='Piece' style={`height: ${demension};`} on:click on:mouseenter={() => isHovered = true} on:mouseleave={() => isHovered = false}>
     <div class='CrossH'>
         <div style={`${w && 'background: black'}`} />
         <div style={`${e && 'background: black'}`} />
@@ -28,6 +30,8 @@
 
     {#if qi !== 0}
         <div class='Qi' style={`${qi === 1 ? 'background: black' : 'background: white'}`} />
+    {:else if isHovered}
+        <div class='Qi' style={`${$curPlayer === 1 ? 'background: black' : 'background: white'}; opacity:0.5;`} />
     {/if}
 </button>
 
@@ -40,11 +44,9 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        cursor: pointer;
     }
 
-    .Piece:hover {
-        background-color: rgb(190, 190, 190);
-    }
 
     .CrossH {
         height: 2px;
