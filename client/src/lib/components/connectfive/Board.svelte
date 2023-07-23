@@ -126,8 +126,6 @@
 
 <script>
     import Piece from "./Piece.svelte";
-
-
 </script>
 
 
@@ -138,7 +136,7 @@
     >
     {#each $peices as row, i (i)}
         {#each row as piece, j (j)}
-            <Piece n={i!=0} s={i!=height-1} w={j!=0} e={j!=width-1} qi={piece} on:click={()=>updatePiece(i, j, $curPlayer)} isDotted={checkDotted(i, j, width, height)}/>
+            <Piece n={i!=0} s={i!=height-1} w={j!=0} e={j!=width-1} qi={piece} on:click={()=>updatePiece(i, j, $curPlayer)} isDotted={checkDotted(i, j, width, height)} />
         {/each}
     {/each}
 </section>
