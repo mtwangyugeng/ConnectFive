@@ -115,6 +115,10 @@
     function updatePiece(i, j, curplayer) {
        
         peices.update(v => {
+           // fix overwirting peices
+            if (v[i][j] !== 0) {
+                return v
+            }
             v[i][j] = curplayer;
             console.log(i, j, checkWin(i , j, v));
             return v;
