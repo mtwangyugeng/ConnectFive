@@ -2,18 +2,37 @@
     import { writable } from "svelte/store";
     import Modal from "../styles/Modal.svelte";
     import CloseIcon from "../styles/icons/CloseIcon.svelte";
+    import InputWithAnimatedPlaceHolder from "../styles/InputWithAnimatedPlaceHolder.svelte";
+    import NameTagIcon from "../styles/icons/NameTagIcon.svelte";
     const user = writable("");
-
 </script>
 
-{#if $user ===""}
+<script>
+    import RippleButton from "../styles/RippleButton.svelte";
+    import LoadingIcon from "../styles/icons/LoadingIcon.svelte";
+
+    let isOpened = ($user ==="");
+
+    let name = ""
+    let isLoading = false;
+</script>
+
+{#if isOpened}
     <Modal>
         <section class=card style={``}>
-            <button class=close_button>
+            <button class=close_button on:click={() => isOpened = false}>
                 <CloseIcon />
             </button>
             <form>
-                Enter a nickname.
+                <InputWithAnimatedPlaceHolder bind:value={name} name="name" placeholder="Enter a nickname." icon={NameTagIcon}/>
+
+                <RippleButton type="submit" classes={(name==="" || isLoading) ? "btn-disabled" : "btn-primary"}>
+                    {#if isLoading}
+                        <LoadingIcon />
+                    {:else}
+                        Join
+                    {/if}
+                </RippleButton>
             </form>
         </section>
     </Modal>
@@ -50,5 +69,11 @@
     .close_button :global(svg){
         width: 15px;
         height: 15px;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
     }
 </style>

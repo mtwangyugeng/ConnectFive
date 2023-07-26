@@ -11,7 +11,7 @@
 <section>
 	<Board />
 </section>
-<!-- <Login /> -->
+<Login />
 
 <style>
 	section {
