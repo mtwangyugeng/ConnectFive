@@ -121,10 +121,10 @@
             }
             v[i][j] = curplayer;
             console.log(i, j, checkWin(i , j, v));
+            switchPlayer();
             return v;
         })
 
-        switchPlayer();
     }
 </script>
 
