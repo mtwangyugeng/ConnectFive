@@ -12,12 +12,12 @@
 
     export let type: "button" | "submit" | "reset" | null | undefined =
         "button";
-    export let classes = "RippleButton";
+    export let classes = "";
     export let style = "";
     export let disabled = false;
 </script>
 
-<button class={classes} on:click={handleRipple} on:click {type} {style} {disabled}>
+<button class={"RippleButton " + classes} on:click={handleRipple} on:click {type} {style} {disabled}>
     <div
         class="Ripple"
         class:RippleActive={isRippleActive}

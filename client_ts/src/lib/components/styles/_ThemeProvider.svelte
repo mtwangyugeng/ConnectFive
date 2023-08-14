@@ -3,7 +3,7 @@
 </span>
 
 <style>
-    span :global(*) {
+    :global(*) {
         padding: 0;
         margin: 0;
         box-sizing: border-box;
@@ -37,7 +37,7 @@
         background-color: blue;
         padding: 10px;
     }
-    
+
     span :global(.btn-primary):hover {
         background-color: rgb(53, 53, 248);
     }

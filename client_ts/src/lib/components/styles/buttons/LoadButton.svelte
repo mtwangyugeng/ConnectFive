@@ -10,7 +10,7 @@
 </script>
 
 
-<RippleButton type={type} style={style} disabled={isLoading || disabled} on:click>
+<RippleButton classes={(isLoading || disabled) ? "btn-disabled" : "btn-primary"} type={type} style={style} disabled={isLoading || disabled} on:click>
     {#if isLoading}
         <span class=LoadingIcon><LoadingIcon /></span>
     {:else}
@@ -23,6 +23,5 @@
     .LoadingIcon :global(svg){
         width: 25px;
         height: 25px;
-        fill: orange;
     }
 </style>

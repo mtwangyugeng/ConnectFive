@@ -82,10 +82,9 @@
 </script>
 
 <script lang="ts">
-    import LoadingIcon from "$lib/components/styles/icons/LoadingIcon.svelte";
-    import RippleButton from "$lib/components/styles/buttons/_RippleButton.svelte";
     import InputWithAnimatedPlaceHolder from "$lib/components/styles/inputs/InputWithAnimatedPlaceHolder.svelte";
     import { writable } from "svelte/store";
+    import LoadButton from "$lib/components/styles/buttons/LoadButton.svelte";
 
     let username = "";
     let password = "";
@@ -180,21 +179,9 @@
     </div>
 
     <span class="Submit">
-        <RippleButton
-            type="submit"
-            classes={username === "" ||
-            password === "" ||
-            (isCreatingAccount && confirmPassword === "") ||
-            isLoading
-                ? "btn-disabled"
-                : "btn-primary"}
-        >
-            {#if isLoading}
-                <LoadingIcon />
-            {:else}
-                {windowTitle}
-            {/if}
-        </RippleButton>
+        <LoadButton type="submit" disabled={username === "" || password === "" || (isCreatingAccount && confirmPassword === "")} {isLoading}>
+            Login
+        </LoadButton>
     </span>
 </form>
 
@@ -249,14 +236,5 @@
     .Submit {
         display: flex;
         height: 45px;
-    }
-
-    .Submit :global(button) {
-        width: 100%;
-    }
-
-    .Submit :global(svg) {
-        width: 30px;
-        height: 30px;
     }
 </style>
