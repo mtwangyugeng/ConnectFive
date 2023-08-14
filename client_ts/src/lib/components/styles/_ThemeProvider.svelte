@@ -114,6 +114,12 @@
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
     }
 
+    @media (max-width: 768px) {
+        span :global(.card-shadow) {
+            box-shadow: none;
+        }
+    }
+
     span :global(.card-dropin) {
         position: relative;
         padding: 15px 20px 20px 20px;
