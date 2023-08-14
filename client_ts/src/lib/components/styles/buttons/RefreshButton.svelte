@@ -1,12 +1,11 @@
 <script>
 	import RefreshIcon from "../icons/RefreshIcon.svelte";
-    import Button from '@smui/button';
 </script>
 
 <span class=RefreshButton>
-    <Button variant="outlined" on:click>
+    <button on:click>
         <RefreshIcon />
-    </Button>
+    </button>
 </span>
 
 
