@@ -1,5 +1,6 @@
 <script lang="ts">
 	import LoadingIcon from '../icons/LoadingIcon.svelte';
+    import RippleButton from './_RippleButton.svelte';
 
 	export let isLoading = false;
 
@@ -9,13 +10,13 @@
 </script>
 
 
-<button type={type} style={style} disabled={isLoading || disabled} on:click>
+<RippleButton type={type} style={style} disabled={isLoading || disabled} on:click>
     {#if isLoading}
         <span class=LoadingIcon><LoadingIcon /></span>
     {:else}
         <slot />
     {/if}
-</button>
+</RippleButton>
 
 
 <style>
