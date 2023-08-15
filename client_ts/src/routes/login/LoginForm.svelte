@@ -1,7 +1,7 @@
 <script context="module" lang="ts">
     import { message } from "$lib/components/ToastSystem/ToastSystem.svelte";
 
-    const AUTH_URL = "/auth/";
+    const AUTH_URL = "/api/auth/";
     const userNameF = writable("");
     const userToken = writable("");
 
