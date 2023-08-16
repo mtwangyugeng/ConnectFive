@@ -1,9 +1,12 @@
 <script context="module" lang="ts">
+    /**
+     * this component deals with login and create accounts
+    */
     import { message } from "$lib/components/ToastSystem/ToastSystem.svelte";
 
     const AUTH_URL = "/api/auth/";
     const userNameF = writable("");
-    const userToken = writable("");
+    export const userToken = writable("");
 
     function postLogIn(username: string, password: string) {
         return fetch(AUTH_URL + "login/", {
@@ -72,9 +75,12 @@
             });
             failed = true;
         } else {
-            const reader = await res.json();
-            userToken.set(reader.access);
+            const token = await res.text();
+
+            userToken.set(token);
             userNameF.set(username);
+
+            goto(`/`)
         }
 
         return failed;
@@ -85,6 +91,7 @@
     import InputWithAnimatedPlaceHolder from "$lib/components/styles/inputs/InputWithAnimatedPlaceHolder.svelte";
     import { writable } from "svelte/store";
     import LoadButton from "$lib/components/styles/buttons/LoadButton.svelte";
+    import { goto } from "$app/navigation";
 
     let username = "";
     let password = "";
