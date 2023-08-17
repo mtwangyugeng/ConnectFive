@@ -1,6 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import { generateToken } from './_util';
+import { generateToken, isRegisterValid } from './_util';
 
 const app = express();
 const port = 3000;
@@ -38,20 +38,20 @@ app.post('/auth/login', jsonParser, (req, res) => {
 
 });
 
-// app.post('/auth/register', jsonParser, (req, res) => {
-//     console.log(req.body);
-//     const username = req.body.username;
-//     const password = req.body.password;
-//     const password2 = req.body.password2;
+app.post('/auth/register', jsonParser, (req, res) => {
+    console.log(req.body);
+    const username = req.body.username;
+    const password = req.body.password;
+    const password2 = req.body.password2;
 
-//     if (isRegisterValid(username, password, password2) && !users.has(username)) {
-//         registerUser(username, password);
-//         res.send
-//     } else {
-//         res.sendStatus(403);
-//     }
+    if (isRegisterValid(username, password, password2) && !users.has(username)) {
+        users.set(username, password);
+        res.send('ok');
+    } else {
+        res.sendStatus(403);
+    }
 
-// });
+});
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
