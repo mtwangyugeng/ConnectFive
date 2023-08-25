@@ -1,6 +1,6 @@
 <script>
     import { goto } from "$app/navigation";
-    import Board from "$lib/components/connectfive/Board.svelte";
+    import Board from "$lib/components/Connectfive/Board.svelte";
     import { onMount } from "svelte";
     import { userToken } from "./login/LoginForm.svelte";
 	console.log("THIS IS HOME NOW", $userToken)
